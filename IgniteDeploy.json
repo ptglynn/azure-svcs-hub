@@ -420,6 +420,12 @@
 					},
 					"virtualNetworkAddressPrefix": {
 						"value": "[parameters('virtualNetworkAddressPrefix')]"
+					},
+					"location": {
+						"value": "[parameters('location')]"
+					},
+					"virtualNetworkRG": {
+						"value": "[parameters('virtualNetworkRG')]"
 					}
 				}
 			}
