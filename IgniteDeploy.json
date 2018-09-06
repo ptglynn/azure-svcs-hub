@@ -409,7 +409,7 @@
 		{
 			"name": "deployNsg",
 			"type": "Microsoft.Resources/deployments",
-			"resourceGroup": "svcshubrg1",
+			"resourceGroup": "[variables('virtualNetworkRG')]",
 			"apiVersion": "2017-05-10",
 			"properties": {
 				"mode": "Incremental",
@@ -441,7 +441,7 @@
 			"apiVersion": "2017-05-10",
 			"name": "DeployVnet",
 			"type": "Microsoft.Resources/deployments",
-			"resourceGroup": "svcshubrg1",
+			"resourceGroup": "[variables('virtualNetworkRG')]",
 			"dependsOn": [
 				"Microsoft.Resources/deployments/deployNsg"
 			],
