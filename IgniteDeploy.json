@@ -398,11 +398,10 @@
 		"webLBURL": "[concat(variables('baseUrl'),'/public-lb-', variables('LoadBalancerType'), '.json')]"
 	},
 	"resources": [
-
 		{
             		"type": "Microsoft.Resources/resourceGroups",
 		    	"apiVersion": "2018-05-01",
-            		"location": "Central US",
+            		"location": "[variables('location')]",
             		"name": "[variables('virtualNetworkRG')]",
             		"properties": {}
         	},
