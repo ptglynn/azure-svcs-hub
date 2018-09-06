@@ -429,6 +429,85 @@
 					}
 				}
 			}
+		},
+		{
+			"condition": "[equals(parameters('vnetNewOrExisting'), 'new')]",
+			"apiVersion": "2017-05-10",
+			"name": "DeployVnet",
+			"type": "Microsoft.Resources/deployments",
+			"resourceGroup": "[variables('virtualNetworkRG')]",
+			"dependsOn": [
+				"Microsoft.Resources/deployments/deployNsg"
+			],
+			"properties": {
+				"mode": "Incremental",
+				"templateLink": {
+					"uri": "[variables('deployVnetURL')]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"nsgName": {
+						"value": "[parameters('networkSecurityGroupName')]"
+					},
+					"virtualNetworkName": {
+						"value": "[parameters('virtualNetworkName')]"
+					},
+					"virtualNetworkAddressPrefix": {
+						"value": "[parameters('virtualNetworkAddressPrefix')]"
+					},
+					"mgmtSubnetName": {
+						"value": "[parameters('mgmtSubnetName')]"
+					},
+					"untrustSubnetName": {
+						"value": "[parameters('untrustSubnetName')]"
+					},
+					"ipFirewalluntrustSubnetName": {
+						"value": "[parameters('ipFirewalluntrustSubnetName')]"
+					},
+					"ipFirewalltrustSubnetName": {
+						"value": "[parameters('ipFirewalltrustSubnetName')]"
+					},
+					"trustSubnetName": {
+						"value": "[parameters('trustSubnetName')]"
+					},
+					"loadBalancerIP": {
+						"value": "[parameters('loadBalancerIP')]"
+					},
+					"appGwUntrustSubnetName": {
+						"value": "[parameters('appGwUntrustSubnetName')]"
+					},
+					"appGwTrustSubnetName": {
+						"value": "[parameters('appGwTrustSubnetName')]"
+					},
+					"AppGWSubnetName": {
+						"value": "[parameters('appGatewaySubnetName')]"
+					},
+					"mgmtSubnetPrefix": {
+						"value": "[parameters('mgmtSubnetPrefix')]"
+					},
+					"untrustSubnetPrefix": {
+						"value": "[parameters('untrustSubnetPrefix')]"
+					},
+					"trustSubnetPrefix": {
+						"value": "[parameters('trustSubnetPrefix')]"
+					},
+					"ipFirewalluntrustSubnetPrefix": {
+						"value": "[parameters('ipFirewalluntrustSubnetPrefix')]"
+					},
+					"ipFirewalltrustSubnetPrefix": {
+						"value": "[parameters('ipFirewalltrustSubnetPrefix')]"
+					},
+					"appGwTrustSubnetPrefix": {
+						"value": "[parameters('appGwTrustSubnetPrefix')]"
+					},
+					"appGwUntrustSubnetPrefix": {
+						"value": "[parameters('appGwUntrustSubnetPrefix')]"
+					},
+					"AppGWSubnetPrefix": {
+						"value": "[parameters('AppGWSubnetPrefix')]"
+					}
+				}
+			}
 		}
 	],
 	"outputs": {}
