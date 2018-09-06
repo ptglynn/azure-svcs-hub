@@ -401,7 +401,6 @@
 		{
 			"name": "deployNsg",
 			"type": "Microsoft.Resources/deployments",
-			"resourceGroup": "[variables('virtualNetworkRG')]",
 			"apiVersion": "2017-05-10",
 			"properties": {
 				"mode": "Incremental",
