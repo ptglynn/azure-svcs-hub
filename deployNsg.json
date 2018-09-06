@@ -23,8 +23,8 @@
 	{
             	"type": "Microsoft.Resources/resourceGroups",
 		"apiVersion": "2018-05-01",
-            	"location": "[variables('location')]",
-            	"name": "[variables('virtualNetworkRG')]",
+            	"location": "[parameters('location')]",
+            	"name": "[parameters('virtualNetworkRG')]",
          	"properties": {}
         },
 	{
