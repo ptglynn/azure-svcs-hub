@@ -388,8 +388,8 @@
 		"deployEgressLoadBalancerURL": "[concat(variables('baseUrl'),'/DeployEgressLoadBalancer.json')]",
 		"deployipFirewallLoadBalancerlURL": "[concat(variables('baseUrl'),'/deploytcpLoadBalancer.json')]",
 		"location": "[resourceGroup().location]",
-		"virtualNetworkRG": "svcshubrg1",
-		"egressfwrg": "egressfwrg",
+		"virtualNetworkRG": "pgsvcshubrg",
+		"egressfwrg": "pgegressfwrg",
 		"rgname": "[resourceGroup().name]",
 		"egressfwstor": "[concat(parameters('storageName'),'egress')]",
 		"ipfwstor": "[concat(parameters('storageName'),'ipfw')]",
@@ -402,7 +402,7 @@
 		{
 			"name": "deployNsg",
 			"type": "Microsoft.Resources/deployments",
-			"resourceGroup": "svcshubrg1",
+			"resourceGroup": "pgsvcshubrg",
 			"apiVersion": "2017-05-10",
 			"properties": {
 				"mode": "Incremental",
@@ -431,7 +431,7 @@
 			"apiVersion": "2017-05-10",
 			"name": "DeployVnet",
 			"type": "Microsoft.Resources/deployments",
-			"resourceGroup": "svcshubrg1",
+			"resourceGroup": "pgsvcshubrg",
 			"dependsOn": [
 				"Microsoft.Resources/deployments/deployNsg"
 			],
@@ -509,7 +509,7 @@
 			"condition": "[equals(parameters('deployEgressFirewall'), 'yes')]",
 			"name": "DeployEgressFWLoadBalancer",
 			"type": "Microsoft.Resources/deployments",
-			"resourceGroup": "egressfwrg",
+			"resourceGroup": "pgegressfwrg",
 			"apiVersion": "2017-05-10",
 			"dependsOn": [
 				"Microsoft.Resources/deployments/deployVNet"
@@ -545,7 +545,7 @@
 		{
 			"condition": "[equals(parameters('deployEgressFirewall'), 'yes')]",
 			"name": "deployEgressFirewall",
-			"resourceGroup": "egressfwrg",
+			"resourceGroup": "pgegressfwrg",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2017-05-10",
 			"dependsOn": [
