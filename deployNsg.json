@@ -25,6 +25,9 @@
 		"type": "Microsoft.Network/networkSecurityGroups",
 		"name": "[concat(parameters('nsgName'), '-mgmt')]",
 		"location": "[parameters('location')]",
+		"dependsOn": [
+				"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
+			],
 		"properties": {
 			"securityRules": [{
 			"name": "Allow-Outside-From-IP",
@@ -75,6 +78,9 @@
 		"name": "[concat(parameters('nsgName'), '-trust')]",
         "apiVersion": "2017-06-01",
         "location": "[parameters('location')]",
+	"dependsOn": [
+			"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
+	],
         "properties": {
             "securityRules": [
             {
