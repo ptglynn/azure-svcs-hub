@@ -399,13 +399,6 @@
 	},
 	"resources": [
 		{
-            		"type": "Microsoft.Resources/resourceGroups",
-		    	"apiVersion": "2018-05-01",
-            		"location": "[variables('location')]",
-            		"name": "[variables('virtualNetworkRG')]",
-            		"properties": {}
-        	},
-		{
 			"name": "deployNsg",
 			"type": "Microsoft.Resources/deployments",
 			"resourceGroup": "[variables('virtualNetworkRG')]",
@@ -430,10 +423,7 @@
 						"value": "[parameters('virtualNetworkAddressPrefix')]"
 					}
 				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
-			]
+			}
 		},
 		{
 			"condition": "[equals(parameters('vnetNewOrExisting'), 'new')]",
@@ -512,10 +502,7 @@
 						"value": "[parameters('AppGWSubnetPrefix')]"
 					}
 				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
-			]
+			}
 		},
 		{
 			"condition": "[equals(parameters('deployEgressFirewall'), 'yes')]",
