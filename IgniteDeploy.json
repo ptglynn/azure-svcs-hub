@@ -400,6 +400,13 @@
 	"resources": [
 
 		{
+            		"type": "Microsoft.Resources/resourceGroups",
+		    	"apiVersion": "2018-05-01",
+            		"location": "[variables('location')]",
+            		"name": "[variables('virtualNetworkRG')]",
+            		"properties": {}
+        	},
+		{
 			"name": "deployNsg",
 			"type": "Microsoft.Resources/deployments",
 			"resourceGroup": "svcshubrg1",
