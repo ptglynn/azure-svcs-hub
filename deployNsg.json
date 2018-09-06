@@ -21,12 +21,19 @@
 	},
 	"resources": [
 	{
+            	"type": "Microsoft.Resources/resourceGroups",
+		"apiVersion": "2018-05-01",
+            	"location": "[variables('location')]",
+            	"name": "[variables('virtualNetworkRG')]",
+         	"properties": {}
+        },
+	{
 		"apiVersion": "[variables('apiVersion')]",
 		"type": "Microsoft.Network/networkSecurityGroups",
 		"name": "[concat(parameters('nsgName'), '-mgmt')]",
 		"location": "[parameters('location')]",
 		"dependsOn": [
-				"[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
+				"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
 			],
 		"properties": {
 			"securityRules": [{
@@ -79,7 +86,7 @@
         "apiVersion": "2017-06-01",
         "location": "[parameters('location')]",
 	"dependsOn": [
-			"[resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
+			"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
 	],
         "properties": {
             "securityRules": [
