@@ -424,7 +424,10 @@
 						"value": "[parameters('virtualNetworkAddressPrefix')]"
 					}
 				}
-			}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
+			]
 		},
 		{
 			"condition": "[equals(parameters('vnetNewOrExisting'), 'new')]",
@@ -503,7 +506,10 @@
 						"value": "[parameters('AppGWSubnetPrefix')]"
 					}
 				}
-			}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/resourceGroups', variables('virtualNetworkRG'))]"
+			]
 		},
 		{
 			"condition": "[equals(parameters('deployEgressFirewall'), 'yes')]",
