@@ -508,6 +508,43 @@
 					}
 				}
 			}
+		},
+		{
+			"condition": "[equals(parameters('deployEgressFirewall'), 'yes')]",
+			"name": "DeployEgressFWLoadBalancer",
+			"type": "Microsoft.Resources/deployments",
+			"resourceGroup": "egressfwrg",
+			"apiVersion": "2017-05-10",
+			"dependsOn": [
+				"Microsoft.Resources/deployments/deployVNet"
+			],
+			"properties": {
+				"mode": "Incremental",
+				"templateLink": {
+					"uri": "[variables('deployEgressLoadBalancerURL')]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"location": {
+						"value": "[variables('location')]"
+					},
+					"virtualNetworkRG": {
+						"value": "[variables('virtualNetworkRG')]"
+					},
+					"virtualNetworkName": {
+						"value": "[parameters('virtualNetworkName')]"
+					},
+					"subnetName": {
+						"value": "[parameters('trustSubnetName')]"
+					},
+					"loadBalancerName": {
+						"value": "[variables('egressloadBalancerName')]"
+					},
+					"loadBalancerIP": {
+						"value": "[parameters('loadBalancerIP')]"
+					}
+				}
+			}
 		}
 	],
 	"outputs": {}
